@@ -1,0 +1,28 @@
+version: '3'
+services:
+  app:
+    container_name: docker_node_group1
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
+    environment:
+      PORT: 3000
+      DATABASE_URL: 'mongodb://shangitiole:shangiti.12@mongo:27017/'
+  mongo:
+    container_name: docker_mongo_group1
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: shangitiole
+      MONGO_INITDB_ROOT_PASSWORD: shangiti.12
+
+    volumes:
+      - test-vol:/data/db
+
+volumes:
+  test-vol:
