@@ -2,9 +2,6 @@ version: '3'
 services:
   frontend:
     image: jshangiti/yolo-client:1.0.0
-    build:
-     context: client
-     dockerfile: Dockerfile
     ports:
       - 3000:3000
     stdin_open: true # Keep the terminal running
@@ -15,9 +12,6 @@ services:
         ipv4_address: 172.60.0.2
   backend:
     image: jshangiti/yolo-backend:1.0.0
-    build:
-      context: backend
-      dockerfile: Dockerfile
     ports:
       - 5000:5000
     environment:
