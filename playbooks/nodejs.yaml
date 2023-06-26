@@ -1,14 +1,15 @@
---- ## Install NodeJS using Ansible Playbook
-- name: install nodejs
-  hosts: nodes
-  gather_facts: True
-  become: true
+- name: Install NodeJs
+  hosts: all
   tasks:
-   - name: add apt key for nodesource
-     apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-   - name: add repo for nodesource
-     apt_repository:
-      repo: 'deb https://deb.nodesource.com/node_0.10 {{ ansible_distribution_release }} main'
-      update_cache: no
-   - name: install nodejs
-     apt: name=nodejs
+    - name: Install Node
+      shell: curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+      args:
+        executable: /bin/bash
+    - name: Install nodejs package
+      become: true
+      ansible.builtin.apt:
+        name:
+          - nodejs
+          - npm
+        state: present
+        update_cache: yes
