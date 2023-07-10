@@ -1,0 +1,40 @@
+version: '3'
+services:
+  frontend:
+    image: jshangiti/yolo-client:1.0.0
+    ports:
+      - 3000:3000
+    stdin_open: true # Keep the terminal running
+    depends_on:
+      - backend
+    networks:
+      yolo-test-network:
+        ipv4_address: 172.60.0.2
+  backend:
+    image: jshangiti/yolo-backend:1.0.0
+    ports:
+      - 5000:5000
+    environment:
+      MONGODB_URI: 'mongodb://group1:group1@172.60.0.1:27017'
+    depends_on:
+      - database
+    networks:
+      yolo-test-network:
+        ipv4_address: 172.60.0.3
+  database:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: group1
+      MONGO_INITDB_ROOT_PASSWORD: group1
+    ports:
+      - 27017:27017
+    networks:
+      yolo-test-network:
+        ipv4_address: 172.60.0.4
+
+networks:
+  yolo-test-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.60.0.0/16
