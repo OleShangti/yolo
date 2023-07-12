@@ -7,10 +7,12 @@ resource "docker_image" "images" {
 }
 
 # # Start a container
-# resource "docker_container" "containers" {
-#   count = length(docker_image.images)
-#   name  = "container${count.index}"
-#   image = docker_image.images[count.index].name
 
-#   depends_on = [ docker_image.images ]
-# }
+resource "docker_container" "containers" {
+  count = length(docker_image.images)
+  name  = "container${count.index}"
+  image = docker_image.images[count.index].name
+
+  depends_on = [ docker_image.images ]
+
+}
