@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "terrafom-providers/docker"
+      source  = "terraform-providers/docker"
     }
   }
 }
