@@ -8,6 +8,6 @@ terraform {
 
 provider "docker" {}
 
- resource "docker_image" "ubuntu" {
-  name = "ubuntu:precise"
+ resource "docker_image" "busybox" {
+  name = "busybox:latest"
 }
