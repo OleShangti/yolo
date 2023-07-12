@@ -1,18 +1,13 @@
-provider "docker" {}
-
-# Pull image
-resource "docker_image" "images" {
-  count = length(var.docker_images)
-  name  = var.docker_images[count.index]
+terraform {
+  required_providers {
+    docker = {
+      source  = "terraform-providers/docker"
+    }
+  }
 }
 
-# # Start a container
+provider "docker" {}
 
-resource "docker_container" "containers" {
-  count = length(docker_image.images)
-  name  = "container${count.index}"
-  image = docker_image.images[count.index].name
-
-  depends_on = [ docker_image.images ]
-
+ resource "docker_image" "ubuntu" {
+  name = "ubuntu:precise"
 }
