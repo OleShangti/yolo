@@ -9,7 +9,7 @@ services:
       - backend
     networks:
       yolo-test-network:
-        ipv4_address: 172.60.0.2
+        ipv4_address: 172.62.0.2
   backend:
     image: jshangiti/yolo-backend:1.0.0
     ports:
@@ -20,7 +20,7 @@ services:
       - database
     networks:
       yolo-test-network:
-        ipv4_address: 172.60.0.3
+        ipv4_address: 172.62.0.3
   database:
     image: mongo
     environment:
@@ -30,11 +30,11 @@ services:
       - 27017:27017
     networks:
       yolo-test-network:
-        ipv4_address: 172.60.0.4
+        ipv4_address: 172.62.0.4
 
 networks:
   yolo-test-network:
     ipam:
       driver: default
       config:
-        - subnet: 172.60.0.0/16
+        - subnet: 172.62.0.0/16
