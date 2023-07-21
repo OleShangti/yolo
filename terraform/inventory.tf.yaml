@@ -1,0 +1,12 @@
+---
+plugin: gcp
+
+projects:
+  - project_id
+
+auth_kind: serviceaccount
+service_account_file: C:/Users/jshangiti.SAFARICOM.000/.ssh_id.rsa
+
+inventory:
+  - name: gcp_hosts
+    ungrouped: true
