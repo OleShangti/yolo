@@ -4,7 +4,7 @@ provider "docker" {
 }
 
 resource "docker_network" "private_network" {
-  name = "my_private_network"
+  name = "my_private_network2"
   ipam_config {
     subnet = "172.64.0.0/16"
 

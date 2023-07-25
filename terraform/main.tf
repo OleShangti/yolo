@@ -14,7 +14,7 @@ provider "google" {
 
 resource "google_compute_firewall" "ssh-firewall-rule" {
   project       = var.project_id
-  name          = "docker-ssh2"
+  name          = "docker-ssh1"
   network       = "default"
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["docker"]
@@ -26,7 +26,7 @@ resource "google_compute_firewall" "ssh-firewall-rule" {
 }
 
 resource "google_compute_instance" "docker-instance" {
-  name         = "docker-instance2"
+  name         = "docker-instance"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
   tags         = ["docker"]
@@ -46,7 +46,7 @@ resource "google_compute_instance" "docker-instance" {
   }
 
   metadata = {
-    ssh-keys = "jshangiti:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCdhnyM9inYHi0AUI2duCWg/mMBt4NRpnZC1gFxBdWSGnS7Y1z/dFAt5ImX2ESLPysGRjCKTjkg0NGiQ8apYfMF9CFZWclUT5QKso+ucgJOFzHMrHBgC54vRYjeNhLzHqDW7V+nNbk1D4eEn3a8K2A11Hb9nhAZ8qOLL1bQsS2u2fCMH3yiipvMNP/84u0PvZIpfpixXKw0R/DUkbR9szPaXQb1GncPhL9uLqzZRj1c1S9x0fDQjjUQJd0yCdejcXyzPuEN8gfyTLwpt1eJYOpxzJoNA7gcqpvrCuf2PaE/PSShtZNmqxoH5KshZXf2+xCdNB6sRvOgM5kfuiJYGRsT8S96vTqxpgiCulqLQG1EMaZZqiF7tmQfvucgV6PVs/TteR0ak/G4W2SNFlms0fE+R6u5c5Tgy1WVqOFyedlUBQ0RuMsgzNvm6zDMs99H70k+htJCrr3ZvuI9fG2ploDrogWvonv/G7/KSuOvWN/mjJ/wOIf9L2KUko9fKtg0OpM= jshangiti@docker-instance2"
+    ssh-keys = "jshangiti:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDb/2SHhl0c7Y0LEivo5R1Wm/rTTDR6Ha7JvV17k9H9DmomXGff38/CcUxEJRaQXHEHYD5ECuttIbK6XFpHAG3VB2tEQKSvsy5Z88KZGV4fD3v07XoYxwyZQckGwuHK6haGj3CNSf8am2vc/0HADwJHjlUrBFDxTChgPlyWc6owXTwYInfOLEyZZZ/9Hr1eQ1fvJjtvNhAb7oGWITmMr+Tgw3KTzy9Jk7lU5Fdf25/8ei+42l2WHSCQ2D+2w43wdD3oSE+mAxqD9GyQFdTQy6dTgMYRKtqDY8OBl6XR4aTPk6Jmvso0Tasi3tg4UkEyvGge7siUHRk1e0JneNEhZJyblmGGRmLEBaEQ+GbvLhqlKGYDmpPXsyCY/ijCnGm0r2oH94Gz8R4ZCe2EWNlrNCHO06Wqujogbjd+ANY8s9QV3rtl24PoSyDCzQ/9Qw80YKNAxh87h0bLYE933gbOYpZKl4vfNKm0arvuINI2RHPtP7MNjyACZWGQiR16qCemskE= jshangiti@docker-instance"
   }
 
   provisioner "file" {
